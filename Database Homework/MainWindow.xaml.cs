@@ -22,17 +22,26 @@ namespace Database_Homework
     /// </summary>
     public partial class MainWindow : Window
     {
-        OleDbCommand cn;
+        OleDbConnection cn;
         public MainWindow()
         {
             string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\CW6.accdb";
             cn = new OleDbConnection(Conn);
+
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            string query = "select * from Assets";
+            OleDbCommand cmd = new OleDbCommand(query, cn);
+            cn.Open();
+            OleDbDataReader read = cmd.ExecuteReader();
+            string data = "";
+            while(read.Read())
+            {
+                data += read[0].ToString() + "\n";
+            }
         }
     }
 }
