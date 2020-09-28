@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Name: Enrique Tejeda
+ * Date: 9/28/2020
+ * Filename: MainWindow.xaml.cs
+ * Description: Program will display what is read from the database using 2 buttons that show 
+ *              employee or asset data.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +45,8 @@ namespace Database_Homework
             cn.Open();
             OleDbDataReader read = cmd.ExecuteReader();
             string data = "";
+            //Read in the data with a space between each so when it is printed it will be better to
+            //look at.
             while(read.Read())
             {
                 data += read[0].ToString() + " ";
@@ -109,6 +118,8 @@ namespace Database_Homework
             cn.Open();
             OleDbDataReader read = cmd.ExecuteReader();
             string data = "";
+            //Read in the data with a space between each so when it is printed it will be better to
+            //look at.
             while (read.Read())
             {
                 data += read[0].ToString() + " ";
