@@ -5,9 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Database_Homework"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded_3">
+    <Window.Resources>
+        <local:CW6DataSet x:Key="cW6DataSet"/>
+        <CollectionViewSource x:Key="assetsViewSource" Source="{Binding Assets, Source={StaticResource cW6DataSet}}"/>
+        <CollectionViewSource x:Key="employeesViewSource" Source="{Binding Employees, Source={StaticResource cW6DataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource assetsViewSource}">
         <Button Content="See Assets" HorizontalAlignment="Left" Margin="433,145,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <DataGrid x:Name="assetsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,10,384,211" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="employeeIDColumn" Binding="{Binding EmployeeID}" Header="Employee ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="assetIDColumn" Binding="{Binding AssetID}" Header="Asset ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Description" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="employeesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource employeesViewSource}}" Margin="10,215,384,6" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="employeeIDColumn1" Binding="{Binding EmployeeID}" Header="Employee ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

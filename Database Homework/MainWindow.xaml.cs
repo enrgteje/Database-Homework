@@ -25,7 +25,7 @@ namespace Database_Homework
         OleDbConnection cn;
         public MainWindow()
         {
-            string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\CW6.accdb";
+            string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|CW6.accdb";
             cn = new OleDbConnection(Conn);
 
             InitializeComponent();
@@ -42,6 +42,60 @@ namespace Database_Homework
             {
                 data += read[0].ToString() + "\n";
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            Database_Homework.CW6DataSet cW6DataSet = ((Database_Homework.CW6DataSet)(this.FindResource("cW6DataSet")));
+            // Load data into the table Assets. You can modify this code as needed.
+            Database_Homework.CW6DataSetTableAdapters.AssetsTableAdapter cW6DataSetAssetsTableAdapter = new Database_Homework.CW6DataSetTableAdapters.AssetsTableAdapter();
+            cW6DataSetAssetsTableAdapter.Fill(cW6DataSet.Assets);
+            System.Windows.Data.CollectionViewSource assetsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("assetsViewSource")));
+            assetsViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+            Database_Homework.CW6DataSet cW6DataSet = ((Database_Homework.CW6DataSet)(this.FindResource("cW6DataSet")));
+            // Load data into the table Assets. You can modify this code as needed.
+            Database_Homework.CW6DataSetTableAdapters.AssetsTableAdapter cW6DataSetAssetsTableAdapter = new Database_Homework.CW6DataSetTableAdapters.AssetsTableAdapter();
+            cW6DataSetAssetsTableAdapter.Fill(cW6DataSet.Assets);
+            System.Windows.Data.CollectionViewSource assetsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("assetsViewSource")));
+            assetsViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void Window_Loaded_2(object sender, RoutedEventArgs e)
+        {
+
+            Database_Homework.CW6DataSet cW6DataSet = ((Database_Homework.CW6DataSet)(this.FindResource("cW6DataSet")));
+            // Load data into the table Employees. You can modify this code as needed.
+            Database_Homework.CW6DataSetTableAdapters.EmployeesTableAdapter cW6DataSetEmployeesTableAdapter = new Database_Homework.CW6DataSetTableAdapters.EmployeesTableAdapter();
+            cW6DataSetEmployeesTableAdapter.Fill(cW6DataSet.Employees);
+            System.Windows.Data.CollectionViewSource employeesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("employeesViewSource")));
+            employeesViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void employeesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded_3(object sender, RoutedEventArgs e)
+        {
+
+            Database_Homework.CW6DataSet cW6DataSet = ((Database_Homework.CW6DataSet)(this.FindResource("cW6DataSet")));
+            // Load data into the table Assets. You can modify this code as needed.
+            Database_Homework.CW6DataSetTableAdapters.AssetsTableAdapter cW6DataSetAssetsTableAdapter = new Database_Homework.CW6DataSetTableAdapters.AssetsTableAdapter();
+            cW6DataSetAssetsTableAdapter.Fill(cW6DataSet.Assets);
+            System.Windows.Data.CollectionViewSource assetsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("assetsViewSource")));
+            assetsViewSource.View.MoveCurrentToFirst();
+            // Load data into the table Employees. You can modify this code as needed.
+            Database_Homework.CW6DataSetTableAdapters.EmployeesTableAdapter cW6DataSetEmployeesTableAdapter = new Database_Homework.CW6DataSetTableAdapters.EmployeesTableAdapter();
+            cW6DataSetEmployeesTableAdapter.Fill(cW6DataSet.Employees);
+            System.Windows.Data.CollectionViewSource employeesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("employeesViewSource")));
+            employeesViewSource.View.MoveCurrentToFirst();
         }
     }
 }
