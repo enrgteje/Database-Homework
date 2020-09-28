@@ -25,7 +25,7 @@ namespace Database_Homework
         OleDbConnection cn;
         public MainWindow()
         {
-            string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|CW6.accdb";
+            string Conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\CW6.accdb";
             cn = new OleDbConnection(Conn);
 
             InitializeComponent();
@@ -40,8 +40,12 @@ namespace Database_Homework
             string data = "";
             while(read.Read())
             {
-                data += read[0].ToString() + "\n";
+                data += read[0].ToString() + " ";
+                data += read[1].ToString() + " ";
+                data += read[2].ToString() + "\n";
             }
+            table.Text = data;
+            cn.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -96,6 +100,23 @@ namespace Database_Homework
             cW6DataSetEmployeesTableAdapter.Fill(cW6DataSet.Employees);
             System.Windows.Data.CollectionViewSource employeesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("employeesViewSource")));
             employeesViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            string query = "select * from Employees";
+            OleDbCommand cmd = new OleDbCommand(query, cn);
+            cn.Open();
+            OleDbDataReader read = cmd.ExecuteReader();
+            string data = "";
+            while (read.Read())
+            {
+                data += read[0].ToString() + " ";
+                data += read[1].ToString() + " ";
+                data += read[2].ToString() + "\n";
+            }
+            table.Text = data;
+            cn.Close();
         }
     }
 }
